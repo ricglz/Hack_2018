@@ -32,8 +32,11 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        Intent i= new Intent(this,SettingsActivity.class);
-        startActivity(i);
+        int o=item.getItemId();
+        if(o==R.id.tlbSettings) {
+            Intent i = new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        }
         return super.onOptionsItemSelected(item);
     }
 }
