@@ -1,11 +1,18 @@
 package com.example.ricardo.hack_2018;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Bitmap;
 import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.Spinner;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonObjectRequest;
@@ -23,7 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-    
+
     private ArrayList<String> urls;
     private NetworkImageView image;
     private View view;
@@ -31,58 +38,31 @@ public class MainActivity extends AppCompatActivity {
     private RequestQueue mRequestQueue;
     private ImageLoader mImageLoader;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        view = getWindow().getDecorView().getRootView();
-        image = view.findViewById(R.id.image);
-
-        mRequestQueue = Volley.newRequestQueue(getApplicationContext());
-        mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
-            private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
-            public void putBitmap(String url, Bitmap bitmap) {
-                mCache.put(url, bitmap);
-            }
-            public Bitmap getBitmap(String url) {
-                return mCache.get(url);
-            }
-        });
-
     }
 
-    private void parseCats() {
-        String url = "https://api.thecatapi.com/v1/images/search?format=src";
-        image.setImageUrl(url, mImageLoader);
-
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater mi=getMenuInflater();
+        mi.inflate(R.menu.action_bar1, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
-    private void parseDogs() {
-        String url = "https://dog.ceo/api/breeds/image/random";
 
-        JsonObjectRequest request = new JsonObjectRequest(
-                Request.Method.GET, url,
-                null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        try {
-                            String imageUrl = response.getString("message");
-                            image.setImageUrl(imageUrl, mImageLoader);
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                error.printStackTrace();
-            }
-        });
-
-        mRequestQueue.add(request);
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int o=item.getItemId();
+        if(o==R.id.tlbSettings) {
+            Intent i= new Intent(this, SettingsActivity.class);
+            startActivity(i);
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     private void parseMemesJson() {
@@ -129,6 +109,40 @@ public class MainActivity extends AppCompatActivity {
         mRequestQueue.add(request);
 
     }
+
+    private void parseCats() {
+        String url = "https://api.thecatapi.com/v1/images/search?format=src";
+        image.setImageUrl(url, mImageLoader);
+
+    }
+
+    private void parseDogs() {
+        String url = "https://dog.ceo/api/breeds/image/random";
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String imageUrl = response.getString("message");
+                            image.setImageUrl(imageUrl, mImageLoader);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        mRequestQueue.add(request);
+
+      }
 
 
 }
