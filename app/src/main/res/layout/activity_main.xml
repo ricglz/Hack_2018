@@ -7,12 +7,18 @@
     tools:context="com.example.ricardo.hack_2018.MainActivity">
 
     <TextView
+        android:id="@+id/meme_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="20sp"
+        android:textColor="@android:color/black"
+        />
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/meme"
+        android:layout_width="402dp"
+        android:layout_height="582dp"
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp" />
 
 </android.support.constraint.ConstraintLayout>
