@@ -23,7 +23,7 @@
         android:id="@+id/textView2"
         android:layout_width="160dp"
         android:layout_height="50dp"
-        android:layout_marginBottom="26dp"
+        android:layout_marginBottom="24dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="17dp"
         android:ems="6"
@@ -54,10 +54,12 @@
         android:layout_height="50dp"
         android:layout_marginBottom="28dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="25dp"
         android:text="Clock Color"
         android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/textView4"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <Spinner
         android:id="@+id/spinner3"
@@ -75,10 +77,12 @@
         android:layout_height="50dp"
         android:layout_marginBottom="214dp"
         android:layout_marginStart="16dp"
+        android:layout_marginTop="28dp"
         android:text="Background"
         android:textSize="25dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
     <Spinner
         android:id="@+id/spinner4"
