@@ -1,9 +1,11 @@
 package com.example.ricardo.hack_2018;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.view.View;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -25,6 +27,15 @@ public class SettingsActivity extends AppCompatActivity {
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.color_array2, android.R.layout.simple_spinner_item);
         spinner4.setAdapter(adapter2);
+
         // #4B120E, #E6D199, #DFD88A, #C7E4E7
+    }
+    public void goHome(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
+    public void goHome1(View view) {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }
