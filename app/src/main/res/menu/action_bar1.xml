@@ -6,6 +6,6 @@
         android:id="@+id/tlbSettings"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Settings"
-        android:onClick="goToTime"
-        app:showAsAction="always" />
+        app:showAsAction="always"
+        />
 </menu>

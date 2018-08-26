@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         mi.inflate(R.menu.action_bar1, menu);
         return super.onCreateOptionsMenu(menu);
     }
-    public void goToTime(View view) {
+    /*public void goToTime(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
-    }
+    }*/
 }
