@@ -13,7 +13,7 @@ public class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getActionBar().setTitle("Settings");
+       /* getActionBar().setTitle("Settings");
         Spinner spinner2 = (Spinner)findViewById(R.id.spinner2);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
                 R.array.color_array, android.R.layout.simple_spinner_item);
@@ -24,7 +24,7 @@ public class SettingsActivity extends AppCompatActivity {
         Spinner spinner4 = (Spinner)findViewById(R.id.spinner4);
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,
                 R.array.color_array2, android.R.layout.simple_spinner_item);
-        spinner4.setAdapter(adapter2);
+        spinner4.setAdapter(adapter2);*/
         // #4B120E, #E6D199, #DFD88A, #C7E4E7
     }
 }
