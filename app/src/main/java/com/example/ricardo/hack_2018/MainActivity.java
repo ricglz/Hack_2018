@@ -3,6 +3,7 @@ package com.example.ricardo.hack_2018;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.util.LruCache;
 import android.view.View;
 
@@ -24,7 +25,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     
     private ArrayList<String> urls;
-    private NetworkImageView memeImage;
+    private NetworkImageView image;
     private View view;
 
     private RequestQueue mRequestQueue;
@@ -36,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         view = getWindow().getDecorView().getRootView();
+        image = view.findViewById(R.id.image);
 
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
@@ -48,16 +50,39 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        System.out.println("Ok, let's see how it works");
+    }
 
-        parseMemesJson();
+    private void parseCats() {
+        String url = "https://api.thecatapi.com/v1/images/search?format=src";
+        image.setImageUrl(url, mImageLoader);
 
     }
 
     private void parseDogs() {
         String url = "https://dog.ceo/api/breeds/image/random";
-        
-        urls = new ArrayList<>()
+
+        JsonObjectRequest request = new JsonObjectRequest(
+                Request.Method.GET, url,
+                null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        try {
+                            String imageUrl = response.getString("message");
+                            image.setImageUrl(imageUrl, mImageLoader);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        mRequestQueue.add(request);
     }
 
     private void parseMemesJson() {
@@ -87,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
                             }
 
                             String memeUrl = urls.get((int) (amountOfMemes * Math.random()));
-                            memeImage.setImageUrl(memeUrl,mImageLoader);
+                            image.setImageUrl(memeUrl,mImageLoader);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
