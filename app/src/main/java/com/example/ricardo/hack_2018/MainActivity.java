@@ -37,8 +37,6 @@ public class MainActivity extends AppCompatActivity {
 
         view = getWindow().getDecorView().getRootView();
 
-        memeImage = view.findViewById(R.id.meme);
-
         mRequestQueue = Volley.newRequestQueue(getApplicationContext());
         mImageLoader = new ImageLoader(mRequestQueue, new ImageLoader.ImageCache() {
             private final LruCache<String, Bitmap> mCache = new LruCache<String, Bitmap>(10);
