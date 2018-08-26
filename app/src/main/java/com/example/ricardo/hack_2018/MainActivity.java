@@ -22,8 +22,8 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
-
-    private ArrayList<String> memesUrls;
+    
+    private ArrayList<String> urls;
     private NetworkImageView memeImage;
     private View view;
 
@@ -54,10 +54,16 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    private void parseDogs() {
+        String url = "https://dog.ceo/api/breeds/image/random";
+        
+        urls = new ArrayList<>()
+    }
+
     private void parseMemesJson() {
         String url = "https://api.imgflip.com/get_memes";
 
-        memesUrls = new ArrayList<String>();
+        urls = new ArrayList<String>();
 
         JsonObjectRequest request = new JsonObjectRequest(
                 Request.Method.GET, url,
@@ -76,11 +82,11 @@ public class MainActivity extends AppCompatActivity {
 
                                 String imageUrl = meme.getString("url");
 
-                                memesUrls.add(imageUrl);
+                                urls.add(imageUrl);
 
                             }
 
-                            String memeUrl = memesUrls.get((int) (amountOfMemes * Math.random()));
+                            String memeUrl = urls.get((int) (amountOfMemes * Math.random()));
                             memeImage.setImageUrl(memeUrl,mImageLoader);
 
                         } catch (JSONException e) {
