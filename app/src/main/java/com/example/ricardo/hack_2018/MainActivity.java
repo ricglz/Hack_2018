@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int o=item.getItemId();
         if(o==R.id.tlbSettings) {
-            Intent i = new Intent(this, SettingsActivity.class);
+            Intent i= new Intent(this, SettingsActivity.class);
             startActivity(i);
         }
         return super.onOptionsItemSelected(item);

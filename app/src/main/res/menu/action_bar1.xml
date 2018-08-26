@@ -6,8 +6,6 @@
         android:id="@+id/tlbSettings"
         android:icon="@android:drawable/ic_menu_manage"
         android:title="Settings"
-
-        android:onClick="goSet"
         app:showAsAction="always"
         />
 </menu>
